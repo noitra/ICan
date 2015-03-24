@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "HomeViewController.h"
+#import "RecordeViewController.h"
+#import "ConfigViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +20,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    HomeViewController *hvc = [[HomeViewController alloc] init];
+    RecordeViewController *rvc = [[RecordeViewController alloc] init];
+    ConfigViewController *cvc = [[ConfigViewController alloc] init];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[hvc, rvc, cvc];
+    
+    self.window.rootViewController = tabBarController;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
