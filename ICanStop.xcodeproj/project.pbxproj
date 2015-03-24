@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		748534491AC1E65400F5E457 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 748534481AC1E65400F5E457 /* main.m */; };
+		7485344C1AC1E65400F5E457 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7485344B1AC1E65400F5E457 /* AppDelegate.m */; };
+		7485344E1AC1E65400F5E457 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7485344D1AC1E65400F5E457 /* Images.xcassets */; };
+		748534511AC1E65400F5E457 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7485344F1AC1E65400F5E457 /* LaunchScreen.xib */; };
+		7485345D1AC1E65400F5E457 /* ICanStopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7485345C1AC1E65400F5E457 /* ICanStopTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		748534571AC1E65400F5E457 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7485343B1AC1E65400F5E457 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 748534421AC1E65400F5E457;
+			remoteInfo = ICanStop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		748534431AC1E65400F5E457 /* ICanStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ICanStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		748534471AC1E65400F5E457 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		748534481AC1E65400F5E457 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7485344A1AC1E65400F5E457 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7485344B1AC1E65400F5E457 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7485344D1AC1E65400F5E457 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		748534501AC1E65400F5E457 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		748534561AC1E65400F5E457 /* ICanStopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ICanStopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7485345B1AC1E65400F5E457 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7485345C1AC1E65400F5E457 /* ICanStopTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ICanStopTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		748534401AC1E65400F5E457 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		748534531AC1E65400F5E457 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7485343A1AC1E65400F5E457 = {
+			isa = PBXGroup;
+			children = (
+				748534451AC1E65400F5E457 /* ICanStop */,
+				748534591AC1E65400F5E457 /* ICanStopTests */,
+				748534441AC1E65400F5E457 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		748534441AC1E65400F5E457 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				748534431AC1E65400F5E457 /* ICanStop.app */,
+				748534561AC1E65400F5E457 /* ICanStopTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		748534451AC1E65400F5E457 /* ICanStop */ = {
+			isa = PBXGroup;
+			children = (
+				7485344A1AC1E65400F5E457 /* AppDelegate.h */,
+				7485344B1AC1E65400F5E457 /* AppDelegate.m */,
+				7485344D1AC1E65400F5E457 /* Images.xcassets */,
+				7485344F1AC1E65400F5E457 /* LaunchScreen.xib */,
+				748534461AC1E65400F5E457 /* Supporting Files */,
+			);
+			path = ICanStop;
+			sourceTree = "<group>";
+		};
+		748534461AC1E65400F5E457 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				748534471AC1E65400F5E457 /* Info.plist */,
+				748534481AC1E65400F5E457 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		748534591AC1E65400F5E457 /* ICanStopTests */ = {
+			isa = PBXGroup;
+			children = (
+				7485345C1AC1E65400F5E457 /* ICanStopTests.m */,
+				7485345A1AC1E65400F5E457 /* Supporting Files */,
+			);
+			path = ICanStopTests;
+			sourceTree = "<group>";
+		};
+		7485345A1AC1E65400F5E457 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7485345B1AC1E65400F5E457 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		748534421AC1E65400F5E457 /* ICanStop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 748534601AC1E65400F5E457 /* Build configuration list for PBXNativeTarget "ICanStop" */;
+			buildPhases = (
+				7485343F1AC1E65400F5E457 /* Sources */,
+				748534401AC1E65400F5E457 /* Frameworks */,
+				748534411AC1E65400F5E457 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ICanStop;
+			productName = ICanStop;
+			productReference = 748534431AC1E65400F5E457 /* ICanStop.app */;
+			productType = "com.apple.product-type.application";
+		};
+		748534551AC1E65400F5E457 /* ICanStopTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 748534631AC1E65400F5E457 /* Build configuration list for PBXNativeTarget "ICanStopTests" */;
+			buildPhases = (
+				748534521AC1E65400F5E457 /* Sources */,
+				748534531AC1E65400F5E457 /* Frameworks */,
+				748534541AC1E65400F5E457 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				748534581AC1E65400F5E457 /* PBXTargetDependency */,
+			);
+			name = ICanStopTests;
+			productName = ICanStopTests;
+			productReference = 748534561AC1E65400F5E457 /* ICanStopTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7485343B1AC1E65400F5E457 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = Bepid;
+				TargetAttributes = {
+					748534421AC1E65400F5E457 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					748534551AC1E65400F5E457 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 748534421AC1E65400F5E457;
+					};
+				};
+			};
+			buildConfigurationList = 7485343E1AC1E65400F5E457 /* Build configuration list for PBXProject "ICanStop" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7485343A1AC1E65400F5E457;
+			productRefGroup = 748534441AC1E65400F5E457 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				748534421AC1E65400F5E457 /* ICanStop */,
+				748534551AC1E65400F5E457 /* ICanStopTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		748534411AC1E65400F5E457 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				748534511AC1E65400F5E457 /* LaunchScreen.xib in Resources */,
+				7485344E1AC1E65400F5E457 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		748534541AC1E65400F5E457 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7485343F1AC1E65400F5E457 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7485344C1AC1E65400F5E457 /* AppDelegate.m in Sources */,
+				748534491AC1E65400F5E457 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		748534521AC1E65400F5E457 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7485345D1AC1E65400F5E457 /* ICanStopTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		748534581AC1E65400F5E457 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 748534421AC1E65400F5E457 /* ICanStop */;
+			targetProxy = 748534571AC1E65400F5E457 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7485344F1AC1E65400F5E457 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				748534501AC1E65400F5E457 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7485345E1AC1E65400F5E457 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7485345F1AC1E65400F5E457 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		748534611AC1E65400F5E457 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ICanStop/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		748534621AC1E65400F5E457 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ICanStop/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		748534641AC1E65400F5E457 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ICanStopTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ICanStop.app/ICanStop";
+			};
+			name = Debug;
+		};
+		748534651AC1E65400F5E457 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ICanStopTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ICanStop.app/ICanStop";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7485343E1AC1E65400F5E457 /* Build configuration list for PBXProject "ICanStop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7485345E1AC1E65400F5E457 /* Debug */,
+				7485345F1AC1E65400F5E457 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		748534601AC1E65400F5E457 /* Build configuration list for PBXNativeTarget "ICanStop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				748534611AC1E65400F5E457 /* Debug */,
+				748534621AC1E65400F5E457 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		748534631AC1E65400F5E457 /* Build configuration list for PBXNativeTarget "ICanStopTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				748534641AC1E65400F5E457 /* Debug */,
+				748534651AC1E65400F5E457 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7485343B1AC1E65400F5E457 /* Project object */;
+}
