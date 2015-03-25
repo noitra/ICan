@@ -13,7 +13,7 @@
 @property(nonatomic, strong) IBOutlet UIPickerView *pickerView;
 @property(nonatomic, weak) IBOutlet UIButton *button;
 @property(nonatomic, strong) NSArray * items;
-@property(nonatomic) _Bool *isCounting;
+@property(nonatomic) BOOL isCounting;
 @property(nonatomic) NSDate *dataInicial;
 @property(nonatomic, weak) IBOutlet UILabel *tempo;
 

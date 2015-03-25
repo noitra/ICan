@@ -19,6 +19,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    // Estrutura do UserDefaults:
+    // NSDate startDate: data de inicio
+    // NSDate notificationTime: hora preferencial para notificacoes
+    // NSInteger viceIndex: indice da posicao do vicio
+    // NSDictionary vices <NSInteger, NSTimeInterval>
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"Data de inicio: %@", [userDefaults valueForKey:@"startDate"]);
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     HomeViewController *hvc = [[HomeViewController alloc] init];

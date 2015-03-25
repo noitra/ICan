@@ -33,14 +33,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [NSTimer scheduledTimerWithTimeInterval: 1.0 target:self selector:@selector(updateClockTime) userInfo:nil repeats: YES];
     
     //seta os delegates do pickerView
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     
+    [self updateClockTime];
     self.tempo.hidden = YES;
     
     self.items = [[NSArray alloc] initWithObjects:@"Nicotina",@"Álcool",@"Drogas", nil];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults valueForKey:@"startDate"] == nil) {
+        [self setDefaultView];
+    } else {
+        [self setRelapseView];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,18 +98,17 @@
 - (IBAction)doAction:(id)sender
 {
     if (!self.isCounting) {
-        self.button.backgroundColor = [UIColor redColor];
-        [self.button setTitle:@"Recaída" forState:UIControlStateNormal];
-        self.isCounting = true;
-        self.pickerView.hidden = YES;
-        self.dataInicial = [NSDate date];
-        self.tempo.hidden = NO;
+        
+        [self setRelapseView];
         
         //mostrar a data na tela, placeholder
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"hh:mm a"];
         NSString *dateToday = [formatter stringFromDate:_dataInicial];
         self.tempo.text = dateToday;
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:self.dataInicial forKey:@"startDate"];
 
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Recaída"
@@ -115,16 +125,54 @@
 {
     if(buttonIndex == 0)//SIM
     {
-        self.button.backgroundColor = [UIColor blueColor];
-        [self.button setTitle:@"Começar" forState:UIControlStateNormal];
-        self.isCounting = false;
-        self.pickerView.hidden = NO;
-        self.tempo.hidden = YES;
+        [self setDefaultView];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults removeObjectForKey:@"startDate"];
     }
     else if(buttonIndex == 1)//NAO
     {
         NSLog(@"Não recaiu");
     }
+}
+
+// Configura a view para o padrao: antes de iniciar
+- (void)setDefaultView
+{
+    self.button.backgroundColor = [UIColor blueColor];
+    [self.button setTitle:@"Começar" forState:UIControlStateNormal];
+    self.isCounting = false;
+    self.pickerView.hidden = NO;
+    self.tempo.hidden = YES;
+}
+
+// Configura a view para a tela de recaída, contando o tempo
+-(void)setRelapseView
+{
+    self.button.backgroundColor = [UIColor redColor];
+    [self.button setTitle:@"Recaída" forState:UIControlStateNormal];
+    self.isCounting = YES;
+    self.pickerView.hidden = YES;
+    self.dataInicial = [NSDate date];
+    self.tempo.hidden = NO;
+}
+
+// Metodo para atualizar o relogio por segundo
+-(void) updateClockTime
+{
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDate *startDate = [userDefaults objectForKey:@"startDate"];
+    NSDate *now = [NSDate date];
+    
+    NSTimeInterval interval = [now timeIntervalSinceDate:startDate];
+    
+    NSInteger ti = (NSInteger)interval;
+    NSInteger seconds = ti % 60;
+    NSInteger minutes = (ti / 60) % 60;
+    NSInteger hours = (ti / 3600 % 24);
+    
+    self.tempo.text = [NSString stringWithFormat:@"%ld horas, %ld minutos e %ld segundos", hours, minutes, seconds];
 }
 
 @end
