@@ -7,8 +7,11 @@
 //
 
 #import "RecordeViewController.h"
+#import "ViceRecord.h"
 
 @interface RecordeViewController ()
+
+@property (nonatomic) NSMutableArray *records;
 
 @end
 
@@ -21,9 +24,6 @@
                            bundle:nibBundleOrNil];
     
     if (self) {
-        
-        
-        
         //Give it a label
         self.tabBarItem.title = @"Recordes";
         
@@ -37,6 +37,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.records = [userDefaults valueForKey:@"vices"];
+    
+    self.records = [[NSMutableArray alloc] init];
+    
+    ViceRecord *v1 = [[ViceRecord alloc] init];
+    [v1 setViceName:@"Nicotina"];
+    [v1 setStartDate:[NSDate date]];
+    [v1 setEndDate:[NSDate dateWithTimeIntervalSinceNow:10000]];
+    
+    ViceRecord *v2 = [[ViceRecord alloc] init];
+    [v2 setViceName:@"Álcool"];
+    [v2 setStartDate:[NSDate date]];
+    [v2 setEndDate:[NSDate dateWithTimeIntervalSinceNow:1000000]];
+    
+    ViceRecord *v3 = [[ViceRecord alloc] init];
+    [v3 setViceName:@"Drogas"];
+    [v3 setStartDate:[NSDate date]];
+    [v3 setEndDate:[NSDate dateWithTimeIntervalSinceNow:10000000]];
+    
+    [self.records addObject:v1];
+    [self.records addObject:v2];
+    [self.records addObject:v3];
+    
+    [self.tableView setDataSource:self];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -45,14 +72,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.records count];
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell =
+    [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
+                           reuseIdentifier:@"UITableViewCell"];
+    
+    ViceRecord *vice = (ViceRecord *)self.records[indexPath.row];
+    cell.textLabel.text = vice.viceName;
+    
+    cell.detailTextLabel.text  = vice.formattedStringTimeInterval;
+    
+    return cell;
+}
 
 @end

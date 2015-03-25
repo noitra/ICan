@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordeViewController : UIViewController
+@interface RecordeViewController : UIViewController <UITableViewDataSource>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

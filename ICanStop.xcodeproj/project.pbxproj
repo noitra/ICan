@@ -18,6 +18,7 @@
 		7485346F1AC1F22E00F5E457 /* RecordeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7485346D1AC1F22E00F5E457 /* RecordeViewController.xib */; };
 		748534731AC1F2CB00F5E457 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748534711AC1F2CB00F5E457 /* ConfigViewController.m */; };
 		748534741AC1F2CB00F5E457 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 748534721AC1F2CB00F5E457 /* ConfigViewController.xib */; };
+		A5D355261AC34A62006C416D /* ViceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D355251AC34A62006C416D /* ViceRecord.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		748534701AC1F2CB00F5E457 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		748534711AC1F2CB00F5E457 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		748534721AC1F2CB00F5E457 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
+		A5D355241AC34A62006C416D /* ViceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViceRecord.h; sourceTree = "<group>"; };
+		A5D355251AC34A62006C416D /* ViceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViceRecord.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,18 +96,20 @@
 			children = (
 				7485344A1AC1E65400F5E457 /* AppDelegate.h */,
 				7485344B1AC1E65400F5E457 /* AppDelegate.m */,
+				7485344F1AC1E65400F5E457 /* LaunchScreen.xib */,
+				7485344D1AC1E65400F5E457 /* Images.xcassets */,
 				748534701AC1F2CB00F5E457 /* ConfigViewController.h */,
 				748534711AC1F2CB00F5E457 /* ConfigViewController.m */,
 				748534721AC1F2CB00F5E457 /* ConfigViewController.xib */,
-				7485344D1AC1E65400F5E457 /* Images.xcassets */,
-				7485344F1AC1E65400F5E457 /* LaunchScreen.xib */,
-				748534461AC1E65400F5E457 /* Supporting Files */,
 				748534661AC1E6DE00F5E457 /* HomeViewController.h */,
 				748534671AC1E6DE00F5E457 /* HomeViewController.m */,
 				748534681AC1E6DE00F5E457 /* HomeViewController.xib */,
 				7485346B1AC1F22E00F5E457 /* RecordeViewController.h */,
 				7485346C1AC1F22E00F5E457 /* RecordeViewController.m */,
 				7485346D1AC1F22E00F5E457 /* RecordeViewController.xib */,
+				A5D355241AC34A62006C416D /* ViceRecord.h */,
+				A5D355251AC34A62006C416D /* ViceRecord.m */,
+				748534461AC1E65400F5E457 /* Supporting Files */,
 			);
 			path = ICanStop;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				748534731AC1F2CB00F5E457 /* ConfigViewController.m in Sources */,
 				748534491AC1E65400F5E457 /* main.m in Sources */,
 				748534691AC1E6DE00F5E457 /* HomeViewController.m in Sources */,
+				A5D355261AC34A62006C416D /* ViceRecord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +430,7 @@
 				748534621AC1E65400F5E457 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		748534631AC1E65400F5E457 /* Build configuration list for PBXNativeTarget "ICanStopTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +439,7 @@
 				748534651AC1E65400F5E457 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
