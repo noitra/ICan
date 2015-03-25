@@ -15,6 +15,7 @@
 @property(nonatomic, strong) NSArray * items;
 @property(nonatomic) BOOL isCounting;
 @property(nonatomic) NSDate *dataInicial;
+@property(nonatomic) NSDate *dataFinal;
 @property(nonatomic, weak) IBOutlet UILabel *tempo;
 
 @end

@@ -10,6 +10,8 @@
 
 @interface HomeViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 
+@property (nonatomic, weak) IBOutlet UIDatePicker *datePicker;
+
 @end
 
 @implementation HomeViewController
@@ -91,8 +93,14 @@
 //funções do delegate de pickerView (5)
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
+    NSString *vice = [[NSString alloc] init];
+    vice = [self.items objectAtIndex:row];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:vice forKey:@"vice"];
+    
     //printa a escolha
-    NSLog(@"Vício escolhido : %@", [self.items objectAtIndex:row]);
+    NSLog(@"Vício escolhido : %@", vice);
 }
 
 - (IBAction)doAction:(id)sender
@@ -102,10 +110,36 @@
         [self setRelapseView];
         
         //mostrar a data na tela, placeholder
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"hh:mm a"];
-        NSString *dateToday = [formatter stringFromDate:_dataInicial];
-        self.tempo.text = dateToday;
+        //NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        //[formatter setDateFormat:@"hh:mm a"];
+        //NSString *dateToday = [formatter stringFromDate:_dataInicial];
+        //self.tempo.text = dateToday;
+        
+        self.dataFinal = self.datePicker.date;
+        NSLog(@"Data do picker %@", self.dataFinal);
+        //NSInteger secondsFromGMT = [[NSTimeZone localTimeZone] secondsFromGMT];
+        //self.dataFinal = [date_picker dateByAddingTimeInterval:secondsFromGMT];
+        //NSLog(@"Data do picker ajustada %@", self.dataFinal);
+        
+        ///Novo no IOS 8 pede permissão para notificações locais
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        
+        //Dispara notificações minuto a minuto e diarias
+        for (int k = 1; k < 7; k++) {
+            [self setNotificationMinute:k];
+            [self setNotificationDay:k];
+        }
+        
+        //Dispara notificações semanais
+        for (int k = 1; k < 9; k++) {
+            [self setNotificationWeek:k];
+        }
+        
+        //Dispara notificações mensais
+        for (int k = 1; k < 13; k++) {
+            [self setNotificationMonth:k];
+        }
+        
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:self.dataInicial forKey:@"startDate"];
@@ -127,6 +161,8 @@
     {
         [self setDefaultView];
         
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults removeObjectForKey:@"startDate"];
     }
@@ -143,6 +179,7 @@
     [self.button setTitle:@"Começar" forState:UIControlStateNormal];
     self.isCounting = false;
     self.pickerView.hidden = NO;
+    self.datePicker.hidden = NO;
     self.tempo.hidden = YES;
 }
 
@@ -153,6 +190,7 @@
     [self.button setTitle:@"Recaída" forState:UIControlStateNormal];
     self.isCounting = YES;
     self.pickerView.hidden = YES;
+    self.datePicker.hidden = YES;
     self.dataInicial = [NSDate date];
     self.tempo.hidden = NO;
 }
@@ -173,6 +211,130 @@
     NSInteger hours = (ti / 3600 % 24);
     
     self.tempo.text = [NSString stringWithFormat:@"%ld horas, %ld minutos e %ld segundos", hours, minutes, seconds];
+}
+
+- (void)setNotificationMinute: (int) minute
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSDate *alertTime = [self.dataInicial dateByAddingTimeInterval:60*minute];
+    
+    UILocalNotification* notification = [[UILocalNotification alloc] init];
+    notification.fireDate = alertTime;
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    if (minute == 1) {
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minuto sem %@", minute, [userDefaults valueForKey:@"vice"]];
+        notification.alertBody = aux;
+    } else {
+       NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minutos sem vicio", minute];
+        notification.alertBody = aux;
+    }
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+- (void)setNotificationDay: (int) day
+{
+    NSDate *alertTime = [self.dataFinal dateByAddingTimeInterval:86400*day];
+    
+    UILocalNotification* notification = [[UILocalNotification alloc] init];
+    notification.fireDate = alertTime;
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    if (day == 1) {
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dia sem vicio", day];
+        notification.alertBody = aux;
+    } else {
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dias sem vicio", day];
+        notification.alertBody = aux;
+    }
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+    // Teste das datas de notificações diarias
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"MM-dd-yyy hh:mm"];
+    NSString *notifDate = [formatter stringFromDate:alertTime];
+    //NSLog(@"%s: fire time = %@", __PRETTY_FUNCTION__, notifDate);
+}
+
+- (void)setNotificationWeek: (int) week
+{
+    NSDate *alertTime = [self.dataFinal dateByAddingTimeInterval:604800*week];
+    
+    UILocalNotification* notification = [[UILocalNotification alloc] init];
+    notification.fireDate = alertTime;
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    if (week == 1) {
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semana sem vicio", week];
+        notification.alertBody = aux;
+    } else {
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semanas sem vicio", week];
+        notification.alertBody = aux;
+    }
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+- (void)setNotificationMonth: (int) month
+{
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    //NSDate *alertTime = [self.dataInicial dateByAddingTimeInterval:604800*week];
+    
+    // Extract date components into components
+    NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond
+                                                         fromDate:self.dataFinal];
+    
+    NSInteger day_aux = [components day];
+    NSInteger month_aux = [components month];
+    NSInteger year_aux = [components year];
+    
+    NSInteger new_month = (month_aux + month) % 12;
+    
+    if (day_aux > 28 && new_month == 2) {
+        new_month++;
+        day_aux = day_aux - 28;
+    }
+    
+    if (day_aux > 30 && (new_month == 1 || new_month == 3 || new_month == 5 || new_month == 7 || new_month == 8 || new_month == 10 || new_month == 12)) {
+        new_month++;
+        day_aux = 1;
+    }
+    
+    if ((month_aux + month) > 12) {
+        year_aux++;
+    }
+    
+    [components setDay:day_aux];
+    [components setMonth:new_month];
+    [components setYear:year_aux];
+    
+    NSDate *fireDate = [gregorianCalendar dateFromComponents:components];
+    
+    UILocalNotification* notification = [[UILocalNotification alloc] init];
+    notification.fireDate = fireDate;
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    if (month == 1) {
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d mês sem vicio", month];
+        notification.alertBody = aux;
+    } else if (month == 12) {
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! 1 ano sem vicio"];
+        notification.alertBody = aux;
+    } else {
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d meses sem vicio", month];
+        notification.alertBody = aux;
+    }
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+    // Teste das datas de notificações mensais
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"MM-dd-yyy hh:mm"];
+    NSString *notifDate = [formatter stringFromDate:fireDate];
+    //NSLog(@"%s: fire time = %@", __PRETTY_FUNCTION__, notifDate);
 }
 
 @end
