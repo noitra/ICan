@@ -48,7 +48,9 @@
     self.tempo.hidden = YES;
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.currentVice = [userDefaults valueForKey:CurrentVice];
+    
+    NSData *currentViceData = [userDefaults valueForKey:CurrentVice];
+    self.currentVice = [ViceRecord getViceRecordFromData:currentViceData];
     
     if (self.currentVice == nil) {
         self.currentVice = [[ViceRecord alloc] init];
@@ -58,7 +60,7 @@
     }
     
     self.items = [userDefaults valueForKey:VicesList];
-    
+    self.currentVice.viceName = self.items[0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -170,7 +172,35 @@
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        ViceRecord *currentVice = [ViceRecord getViceRecordFromData:[userDefaults objectForKey:CurrentVice]];
         [userDefaults removeObjectForKey:CurrentVice];
+        
+        currentVice.endDate = [NSDate date];
+        
+        NSMutableArray *records = [[userDefaults valueForKey:VicesRecords] mutableCopy];
+        if (records == nil) {
+            records = [[NSMutableArray alloc] init];
+        }
+        
+        for (NSData *viceData in records) {
+            ViceRecord *vice = [ViceRecord getViceRecordFromData:viceData];
+            
+            if ([currentVice.viceName isEqualToString:vice.viceName]) {
+                
+                NSTimeInterval recordsViceTimeInterval = [vice.endDate timeIntervalSinceDate:vice.startDate];
+                NSTimeInterval currentViceTimeInterval = [[NSDate date] timeIntervalSinceDate:currentVice.startDate];
+                
+                if (recordsViceTimeInterval > currentViceTimeInterval) {
+                    return;
+                } else {
+                    [records removeObject:viceData];
+                }
+            }
+        }
+        
+        [records addObject:[currentVice getData]];
+        [userDefaults setObject:records forKey:VicesRecords];
+
     }
     else if(buttonIndex == 1)//NAO
     {
@@ -241,6 +271,8 @@
     vice.endDate = [NSDate date];
     
     self.tempo.text = vice.formattedStringTimeInterval;
+    
+    self.tempo.hidden = NO;
 }
 
 //Metodos de disparo de notificações
@@ -256,10 +288,10 @@
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.soundName = UILocalNotificationDefaultSoundName;
     if (minute == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minuto sem %@", minute, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minuto sem %@", minute, [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].viceName];
         notification.alertBody = aux;
     } else {
-       NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minutos sem %@", minute, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
+       NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minutos sem %@", minute, [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].viceName];
         notification.alertBody = aux;
     }
     
@@ -277,10 +309,10 @@
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.soundName = UILocalNotificationDefaultSoundName;
     if (day == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dia sem %@", day, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dia sem %@", day, [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].viceName];
         notification.alertBody = aux;
     } else {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dias sem %@", day, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dias sem %@", day, [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].viceName];
         notification.alertBody = aux;
     }
     
@@ -304,10 +336,10 @@
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.soundName = UILocalNotificationDefaultSoundName;
     if (week == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semana sem %@", week, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semana sem %@", week, [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].viceName];
         notification.alertBody = aux;
     } else {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semanas sem %@", week, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semanas sem %@", week, [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].viceName];
         notification.alertBody = aux;
     }
     
@@ -356,13 +388,13 @@
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.timeZone = [NSTimeZone defaultTimeZone];
     if (month == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d mês sem %@", month, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d mês sem %@", month, [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].viceName];
         notification.alertBody = aux;
     } else if (month == 12) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! 1 ano sem %@", ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! 1 ano sem %@", [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].viceName];
         notification.alertBody = aux;
     } else {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d meses sem %@", month, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d meses sem %@", month, [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].viceName];
         notification.alertBody = aux;
     }
     

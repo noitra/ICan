@@ -17,7 +17,11 @@
     unsigned int unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     
     // Quebrando a diferenca em componentes
-    NSDateComponents *comps = [cal components:unitFlags fromDate:self.startDate toDate:self.endDate options:0];
+    NSDate *endDate = self.endDate;
+    if (endDate == nil) {
+        endDate = [NSDate date];
+    }
+    NSDateComponents *comps = [cal components:unitFlags fromDate:self.startDate toDate:endDate options:0];
     
     NSInteger years = comps.year;
     NSInteger months = comps.month;
@@ -71,6 +75,11 @@
     }
     
     return [NSString stringWithString:string];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ - de %@ ateh %@", self.viceName, self.startDate, self.endDate];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder
