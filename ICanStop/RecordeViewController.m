@@ -28,8 +28,8 @@
         self.tabBarItem.title = @"Recordes";
         
         //Give it an image
-        //UIImage *i = [UIImage imageNamed:@"Time.png"];
-        //self.tabBarItem.image = i;
+        UIImage *i = [UIImage imageNamed:@"record.png"];
+        self.tabBarItem.image = i;
     }
     
     return self;
