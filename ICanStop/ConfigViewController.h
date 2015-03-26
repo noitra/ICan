@@ -10,4 +10,7 @@
 
 @interface ConfigViewController : UIViewController
 
+@property(nonatomic, weak) IBOutlet UIButton *button;
+@property(nonatomic) NSDate *dataNova;
+
 @end

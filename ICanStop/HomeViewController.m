@@ -26,8 +26,8 @@
         
         
         self.tabBarItem.title = @"Home";
-        //UIImage *i = [UIImage imageNamed:@"Time.png"];
-        //self.tabBarItem.image = i;
+        UIImage *i = [UIImage imageNamed:@"home.png"];
+        self.tabBarItem.image = i;
     }
     
     return self;
@@ -227,7 +227,7 @@
         NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minuto sem %@", minute, [userDefaults valueForKey:@"vice"]];
         notification.alertBody = aux;
     } else {
-       NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minutos sem vicio", minute];
+       NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minutos sem %@", minute, [userDefaults valueForKey:@"vice"]];
         notification.alertBody = aux;
     }
     
@@ -236,6 +236,8 @@
 
 - (void)setNotificationDay: (int) day
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
     NSDate *alertTime = [self.dataFinal dateByAddingTimeInterval:86400*day];
     
     UILocalNotification* notification = [[UILocalNotification alloc] init];
@@ -243,10 +245,10 @@
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.soundName = UILocalNotificationDefaultSoundName;
     if (day == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dia sem vicio", day];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dia sem %@", day, [userDefaults valueForKey:@"vice"]];
         notification.alertBody = aux;
     } else {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dias sem vicio", day];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dias sem %@", day, [userDefaults valueForKey:@"vice"]];
         notification.alertBody = aux;
     }
     
@@ -261,6 +263,8 @@
 
 - (void)setNotificationWeek: (int) week
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
     NSDate *alertTime = [self.dataFinal dateByAddingTimeInterval:604800*week];
     
     UILocalNotification* notification = [[UILocalNotification alloc] init];
@@ -268,10 +272,10 @@
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.soundName = UILocalNotificationDefaultSoundName;
     if (week == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semana sem vicio", week];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semana sem %@", week, [userDefaults valueForKey:@"vice"]];
         notification.alertBody = aux;
     } else {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semanas sem vicio", week];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semanas sem %@", week, [userDefaults valueForKey:@"vice"]];
         notification.alertBody = aux;
     }
     
@@ -280,6 +284,8 @@
 
 - (void)setNotificationMonth: (int) month
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     //NSDate *alertTime = [self.dataInicial dateByAddingTimeInterval:604800*week];
     
@@ -318,13 +324,13 @@
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.timeZone = [NSTimeZone defaultTimeZone];
     if (month == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d mês sem vicio", month];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d mês sem %@", month, [userDefaults valueForKey:@"vice"]];
         notification.alertBody = aux;
     } else if (month == 12) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! 1 ano sem vicio"];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! 1 ano sem %@", [userDefaults valueForKey:@"vice"]];
         notification.alertBody = aux;
     } else {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d meses sem vicio", month];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d meses sem %@", month, [userDefaults valueForKey:@"vice"]];
         notification.alertBody = aux;
     }
     
