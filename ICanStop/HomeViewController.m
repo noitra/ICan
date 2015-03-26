@@ -230,10 +230,10 @@
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.soundName = UILocalNotificationDefaultSoundName;
     if (minute == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minuto sem %@", minute, [userDefaults valueForKey:@"vice"]];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minuto sem %@", minute, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
         notification.alertBody = aux;
     } else {
-       NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minutos sem %@", minute, [userDefaults valueForKey:@"vice"]];
+       NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d minutos sem %@", minute, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
         notification.alertBody = aux;
     }
     
@@ -251,10 +251,10 @@
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.soundName = UILocalNotificationDefaultSoundName;
     if (day == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dia sem %@", day, [userDefaults valueForKey:@"vice"]];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dia sem %@", day, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
         notification.alertBody = aux;
     } else {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dias sem %@", day, [userDefaults valueForKey:@"vice"]];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d dias sem %@", day, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
         notification.alertBody = aux;
     }
     
@@ -278,10 +278,10 @@
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.soundName = UILocalNotificationDefaultSoundName;
     if (week == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semana sem %@", week, [userDefaults valueForKey:@"vice"]];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semana sem %@", week, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
         notification.alertBody = aux;
     } else {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semanas sem %@", week, [userDefaults valueForKey:@"vice"]];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d semanas sem %@", week, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
         notification.alertBody = aux;
     }
     
@@ -330,13 +330,13 @@
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.timeZone = [NSTimeZone defaultTimeZone];
     if (month == 1) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d mês sem %@", month, [userDefaults valueForKey:@"vice"]];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d mês sem %@", month, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
         notification.alertBody = aux;
     } else if (month == 12) {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! 1 ano sem %@", [userDefaults valueForKey:@"vice"]];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! 1 ano sem %@", ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
         notification.alertBody = aux;
     } else {
-        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d meses sem %@", month, [userDefaults valueForKey:@"vice"]];
+        NSString *aux = [NSString stringWithFormat:@" Parabéns!! %d meses sem %@", month, ((ViceRecord *)[userDefaults valueForKey:CurrentVice]).viceName];
         notification.alertBody = aux;
     }
     

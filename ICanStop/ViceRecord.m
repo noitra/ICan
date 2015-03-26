@@ -26,8 +26,6 @@
     NSInteger minutes = comps.minute;
     NSInteger seconds = comps.second;
     
-    NSLog(@"%@", comps);
-    
     // Encontrando as unidades mais significativas e contruindo a string de saida
     NSMutableString *string = [NSMutableString stringWithCapacity:63];
     
