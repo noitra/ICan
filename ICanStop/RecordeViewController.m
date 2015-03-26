@@ -8,6 +8,7 @@
 
 #import "RecordeViewController.h"
 #import "ViceRecord.h"
+#import "AppDelegate.h"
 
 @interface RecordeViewController ()
 
@@ -35,36 +36,51 @@
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.records = [userDefaults valueForKey:@"vices"];
+    NSMutableArray *viceDataArray = [[userDefaults valueForKey:VicesRecords] mutableCopy];
     
     self.records = [[NSMutableArray alloc] init];
+
+    BOOL foundCurrentViceInRecords = NO;
+    ViceRecord *currentVice = [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]];
     
-    ViceRecord *v1 = [[ViceRecord alloc] init];
-    [v1 setViceName:@"Nicotina"];
-    [v1 setStartDate:[NSDate date]];
-    [v1 setEndDate:[NSDate dateWithTimeIntervalSinceNow:10000]];
+    for (NSData *viceData in viceDataArray) {
+        ViceRecord *vice = [ViceRecord getViceRecordFromData:viceData];
+        [self.records addObject:vice];
+        
+        if (currentVice != nil && [currentVice.viceName isEqualToString:vice.viceName]) {
+            foundCurrentViceInRecords = YES;
+            
+            NSTimeInterval recordsViceTimeInterval = [vice.endDate timeIntervalSinceDate:vice.startDate];
+            NSTimeInterval currentViceTimeInterval = [[NSDate date] timeIntervalSinceDate:currentVice.startDate];
+            
+            if (recordsViceTimeInterval < currentViceTimeInterval) {
+                [self.records removeObject:vice];
+                [self.records addObject:currentVice];
+            } else {
+            }
+        }
+        
+    }
     
-    ViceRecord *v2 = [[ViceRecord alloc] init];
-    [v2 setViceName:@"Álcool"];
-    [v2 setStartDate:[NSDate date]];
-    [v2 setEndDate:[NSDate dateWithTimeIntervalSinceNow:1000000]];
+    if (!foundCurrentViceInRecords && currentVice != nil) {
+        [self.records addObject:currentVice];
+    }
     
-    ViceRecord *v3 = [[ViceRecord alloc] init];
-    [v3 setViceName:@"Drogas"];
-    [v3 setStartDate:[NSDate date]];
-    [v3 setEndDate:[NSDate dateWithTimeIntervalSinceNow:10000000]];
-    
-    [self.records addObject:v1];
-    [self.records addObject:v2];
-    [self.records addObject:v3];
+    if ([self.records count] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Você não possui nenhum recorde!"
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
     
     [self.tableView setDataSource:self];
-    
-    // Do any additional setup after loading the view from its nib.
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,7 +97,7 @@
     [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
                            reuseIdentifier:@"UITableViewCell"];
     
-    ViceRecord *vice = (ViceRecord *)self.records[indexPath.row];
+    ViceRecord *vice = self.records[indexPath.row];
     cell.textLabel.text = vice.viceName;
     
     cell.detailTextLabel.text  = vice.formattedStringTimeInterval;
