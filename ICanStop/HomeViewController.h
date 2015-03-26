@@ -17,5 +17,10 @@
 @property(nonatomic) NSDate *dataInicial;
 @property(nonatomic) NSDate *dataFinal;
 @property(nonatomic, weak) IBOutlet UILabel *tempo;
+@property(nonatomic, weak) IBOutlet UILabel *escolha_vicio;
+@property(nonatomic, weak) IBOutlet UILabel *escolha_horario;
+@property(nonatomic, weak) IBOutlet UILabel *welcome;
+@property(nonatomic, weak) IBOutlet UIImageView *imagem_vicio;
+
 
 @end

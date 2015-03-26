@@ -111,6 +111,11 @@
 {
     if (!self.isCounting) {
         
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        
+        self.currentVice.startDate = [NSDate date];
+        [userDefaults setObject:self.currentVice.getData forKey:CurrentVice];
+        
         [self setRelapseView];
         
         //mostrar a data na tela, placeholder
@@ -145,11 +150,6 @@
         }
         
         
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        
-        self.currentVice.startDate = [NSDate date];
-        [userDefaults setObject:self.currentVice.getData forKey:CurrentVice];
-
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Recaída"
                                                         message:@"Você tem certeza que recaiu?!"
@@ -186,7 +186,11 @@
     self.isCounting = false;
     self.pickerView.hidden = NO;
     self.datePicker.hidden = NO;
+    self.escolha_horario.hidden = NO;
+    self.escolha_vicio.hidden = NO;
+    self.welcome.hidden = NO;
     self.tempo.hidden = YES;
+    self.imagem_vicio.hidden = YES;
 }
 
 // Configura a view para a tela de recaída, contando o tempo
@@ -198,8 +202,28 @@
     self.pickerView.hidden = YES;
     self.datePicker.hidden = YES;
     self.dataInicial = [NSDate date];
+    self.escolha_horario.hidden = YES;
+    self.escolha_vicio.hidden = YES;
+    self.welcome.hidden = YES;
     [self updateClockTime];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    ViceRecord *record = [userDefaults valueForKey:CurrentVice];
+
+    /*if ([record.viceName isEqualToString:@"Álcool"]) {
+        UIImage *image = [UIImage imageNamed: @"no_alcool.png"];
+        [self.imagem_vicio setImage:image];
+    } else if ([record.viceName isEqualToString:@"Nicotina"]) {
+        UIImage *image = [UIImage imageNamed: @"no_smoking.png"];
+        [self.imagem_vicio setImage:image];
+    } else {
+        UIImage *image = [UIImage imageNamed: @"no_drug.png"];
+        [self.imagem_vicio setImage:image];
+    }*/
+    
     self.tempo.hidden = NO;
+    self.imagem_vicio.hidden = NO;
+    
 }
 
 // Metodo para atualizar o relogio por segundo
@@ -218,6 +242,8 @@
     
     self.tempo.text = vice.formattedStringTimeInterval;
 }
+
+//Metodos de disparo de notificações
 
 - (void)setNotificationMinute: (int) minute
 {
