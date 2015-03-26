@@ -7,10 +7,13 @@
 //
 
 #import "HomeViewController.h"
+#import "AppDelegate.h"
+#import "ViceRecord.h"
 
 @interface HomeViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIDatePicker *datePicker;
+@property (nonatomic) ViceRecord *currentVice;
 
 @end
 
@@ -42,17 +45,19 @@
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     
-    [self updateClockTime];
     self.tempo.hidden = YES;
     
-    self.items = [[NSArray alloc] initWithObjects:@"Nicotina",@"Álcool",@"Drogas", nil];
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if ([userDefaults valueForKey:@"startDate"] == nil) {
+    self.currentVice = [userDefaults valueForKey:CurrentVice];
+    
+    if (self.currentVice == nil) {
+        self.currentVice = [[ViceRecord alloc] init];
         [self setDefaultView];
     } else {
         [self setRelapseView];
     }
+    
+    self.items = [userDefaults valueForKey:VicesList];
     
 }
 
@@ -93,14 +98,13 @@
 //funções do delegate de pickerView (5)
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    NSString *vice = [[NSString alloc] init];
-    vice = [self.items objectAtIndex:row];
+    NSString *viceName = [[NSString alloc] init];
+    viceName = [self.items objectAtIndex:row];
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:vice forKey:@"vice"];
+    self.currentVice.viceName = viceName;
     
     //printa a escolha
-    NSLog(@"Vício escolhido : %@", vice);
+    NSLog(@"Vício escolhido : %@", viceName);
 }
 
 - (IBAction)doAction:(id)sender
@@ -142,7 +146,9 @@
         
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:self.dataInicial forKey:@"startDate"];
+        
+        self.currentVice.startDate = [NSDate date];
+        [userDefaults setObject:self.currentVice.getData forKey:CurrentVice];
 
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Recaída"
@@ -164,7 +170,7 @@
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults removeObjectForKey:@"startDate"];
+        [userDefaults removeObjectForKey:CurrentVice];
     }
     else if(buttonIndex == 1)//NAO
     {
@@ -192,25 +198,25 @@
     self.pickerView.hidden = YES;
     self.datePicker.hidden = YES;
     self.dataInicial = [NSDate date];
+    [self updateClockTime];
     self.tempo.hidden = NO;
 }
 
 // Metodo para atualizar o relogio por segundo
 -(void) updateClockTime
 {
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSDate *startDate = [userDefaults objectForKey:@"startDate"];
-    NSDate *now = [NSDate date];
     
-    NSTimeInterval interval = [now timeIntervalSinceDate:startDate];
+    NSData *dataFromCurrentVice = [userDefaults objectForKey:CurrentVice];
     
-    NSInteger ti = (NSInteger)interval;
-    NSInteger seconds = ti % 60;
-    NSInteger minutes = (ti / 60) % 60;
-    NSInteger hours = (ti / 3600 % 24);
+    if (dataFromCurrentVice == nil) {
+        return;
+    }
     
-    self.tempo.text = [NSString stringWithFormat:@"%ld horas, %ld minutos e %ld segundos", hours, minutes, seconds];
+    ViceRecord *vice = [ViceRecord getViceRecordFromData: dataFromCurrentVice];
+    vice.endDate = [NSDate date];
+    
+    self.tempo.text = vice.formattedStringTimeInterval;
 }
 
 - (void)setNotificationMinute: (int) minute

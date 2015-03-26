@@ -75,4 +75,32 @@
     return [NSString stringWithString:string];
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.viceName forKey:@"viceName"];
+    [coder encodeObject:self.startDate forKey:@"startDate"];
+    [coder encodeObject:self.endDate forKey:@"endDate"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super init];
+    if (self) {
+        self.viceName = [coder decodeObjectForKey:@"viceName"];
+        self.startDate = [coder decodeObjectForKey:@"startDate"];
+        self.endDate = [coder decodeObjectForKey:@"endDate"];
+    }
+    return self;
+}
+
+- (NSData *)getData
+{
+    return [NSKeyedArchiver archivedDataWithRootObject:self];
+}
+
++ (instancetype)getViceRecordFromData:(NSData *)data
+{
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
 @end

@@ -11,22 +11,26 @@
 #import "RecordeViewController.h"
 #import "ConfigViewController.h"
 
+NSString * const CurrentVice = @"CurrentVice";
+NSString * const VicesRecords = @"VicesRecords";
+NSString * const PreferredNotificationTime = @"PreferredNotificationTime";
+NSString * const VicesList = @"VicesList";
+
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
++ (void)initialize
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *vicesList = @[@"Nicotina",@"Álcool",@"Drogas"];
+    
+    [userDefaults setObject:vicesList forKey:VicesList];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    // Estrutura do UserDefaults:
-    // NSDate startDate: data de inicio
-    // NSDate notificationTime: hora preferencial para notificacoes
-    // NSInteger viceIndex: indice da posicao do vicio
-    // NSDictionary vices <NSInteger, NSTimeInterval>
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"Data de inicio: %@", [userDefaults valueForKey:@"startDate"]);
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

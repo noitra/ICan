@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class ViceRecord;
+
+extern NSString * const CurrentVice;
+extern NSString * const VicesRecords;
+extern NSString * const PreferredNotificationTime;
+extern NSString * const VicesList;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

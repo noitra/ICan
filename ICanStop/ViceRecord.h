@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ViceRecord : NSObject
+@interface ViceRecord : NSObject <NSCoding>
 
 @property (nonatomic) NSString *viceName;
 @property (nonatomic) NSDate *startDate;
 @property (nonatomic) NSDate *endDate;
 
 - (NSString *) formattedStringTimeInterval;
+- (NSData *)getData;
++ (instancetype)getViceRecordFromData:(NSData *)data;
 
 @end
