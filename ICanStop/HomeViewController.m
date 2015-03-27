@@ -240,20 +240,17 @@
     self.escolha_vicio.hidden = YES;
     self.welcome.hidden = YES;
     [self updateClockTime];
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    ViceRecord *record = [userDefaults valueForKey:CurrentVice];
 
-    /*if ([record.viceName isEqualToString:@"Álcool"]) {
+    if ([self.currentVice.viceName isEqualToString:@"Álcool"]) {
         UIImage *image = [UIImage imageNamed: @"no_alcool.png"];
         [self.imagem_vicio setImage:image];
-    } else if ([record.viceName isEqualToString:@"Nicotina"]) {
+    } else if ([self.currentVice.viceName isEqualToString:@"Nicotina"]) {
         UIImage *image = [UIImage imageNamed: @"no_smoking.png"];
         [self.imagem_vicio setImage:image];
     } else {
         UIImage *image = [UIImage imageNamed: @"no_drug.png"];
         [self.imagem_vicio setImage:image];
-    }*/
+    }
     
     self.tempo.hidden = NO;
     self.imagem_vicio.hidden = NO;
