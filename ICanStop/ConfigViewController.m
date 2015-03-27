@@ -48,38 +48,54 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)mudarNotification:(id)sender
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDate *dataInicial = [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].startDate;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mudar Horário"
-                                                    message:@"Você tem certeza que deseja mudar o horário das notificações?!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"SIM"
-                                          otherButtonTitles:@"NÃO",nil];
-    [alert show];
+    NSLog(@"datainicial = %@", dataInicial);
+    
+    if (dataInicial != nil) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mudar Horário"
+                                                        message:@"Você tem certeza que deseja mudar o horário das notificações?!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"SIM"
+                                              otherButtonTitles:@"NÃO",nil];
+        [alert show];
+    } else {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mudar Horário"
+                                                        message:@"Você ainda não está acompanhando um período de tempo!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+    }
     
 }
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0)//SIM
     {
-
+        
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
         
         self.dataNova = self.datePicker.date;
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSDate *dataInicial = [ViceRecord getViceRecordFromData:[userDefaults valueForKey:CurrentVice]].startDate;
+        
         
         NSTimeInterval interval = [self.dataNova timeIntervalSinceDate:dataInicial];
         
@@ -134,7 +150,10 @@
                 }
             }
         }
+        
+        
     }
+    
     else if(buttonIndex == 1)//NAO
     {
         NSLog(@"Não mudou");
