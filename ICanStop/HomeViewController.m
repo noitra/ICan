@@ -182,6 +182,8 @@
             records = [[NSMutableArray alloc] init];
         }
         
+        NSData *viceToRemove;
+        
         for (NSData *viceData in records) {
             ViceRecord *vice = [ViceRecord getViceRecordFromData:viceData];
             
@@ -193,10 +195,12 @@
                 if (recordsViceTimeInterval > currentViceTimeInterval) {
                     return;
                 } else {
-                    [records removeObject:viceData];
+                    viceToRemove = viceData;
                 }
             }
         }
+        
+        [records removeObject:viceToRemove];
         
         [records addObject:[currentVice getData]];
         [userDefaults setObject:records forKey:VicesRecords];
