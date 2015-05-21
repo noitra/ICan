@@ -73,6 +73,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7460C0281B0E1F6D008F10A3 /* ViewsControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7460C02B1B0E1FA0008F10A3 /* RecordeViewController */,
+				7460C02A1B0E1F8C008F10A3 /* HomeViewController */,
+				7460C0291B0E1F78008F10A3 /* ConfigViewController */,
+			);
+			name = ViewsControllers;
+			sourceTree = "<group>";
+		};
+		7460C0291B0E1F78008F10A3 /* ConfigViewController */ = {
+			isa = PBXGroup;
+			children = (
+				748534701AC1F2CB00F5E457 /* ConfigViewController.h */,
+				748534711AC1F2CB00F5E457 /* ConfigViewController.m */,
+				748534721AC1F2CB00F5E457 /* ConfigViewController.xib */,
+			);
+			name = ConfigViewController;
+			sourceTree = "<group>";
+		};
+		7460C02A1B0E1F8C008F10A3 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				748534661AC1E6DE00F5E457 /* HomeViewController.h */,
+				748534671AC1E6DE00F5E457 /* HomeViewController.m */,
+				748534681AC1E6DE00F5E457 /* HomeViewController.xib */,
+			);
+			name = HomeViewController;
+			sourceTree = "<group>";
+		};
+		7460C02B1B0E1FA0008F10A3 /* RecordeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7485346B1AC1F22E00F5E457 /* RecordeViewController.h */,
+				7485346C1AC1F22E00F5E457 /* RecordeViewController.m */,
+				7485346D1AC1F22E00F5E457 /* RecordeViewController.xib */,
+			);
+			name = RecordeViewController;
+			sourceTree = "<group>";
+		};
 		7485343A1AC1E65400F5E457 = {
 			isa = PBXGroup;
 			children = (
@@ -94,19 +134,11 @@
 		748534451AC1E65400F5E457 /* ICanStop */ = {
 			isa = PBXGroup;
 			children = (
+				7460C0281B0E1F6D008F10A3 /* ViewsControllers */,
 				7485344A1AC1E65400F5E457 /* AppDelegate.h */,
 				7485344B1AC1E65400F5E457 /* AppDelegate.m */,
 				7485344F1AC1E65400F5E457 /* LaunchScreen.xib */,
 				7485344D1AC1E65400F5E457 /* Images.xcassets */,
-				748534701AC1F2CB00F5E457 /* ConfigViewController.h */,
-				748534711AC1F2CB00F5E457 /* ConfigViewController.m */,
-				748534721AC1F2CB00F5E457 /* ConfigViewController.xib */,
-				748534661AC1E6DE00F5E457 /* HomeViewController.h */,
-				748534671AC1E6DE00F5E457 /* HomeViewController.m */,
-				748534681AC1E6DE00F5E457 /* HomeViewController.xib */,
-				7485346B1AC1F22E00F5E457 /* RecordeViewController.h */,
-				7485346C1AC1F22E00F5E457 /* RecordeViewController.m */,
-				7485346D1AC1F22E00F5E457 /* RecordeViewController.xib */,
 				A5D355241AC34A62006C416D /* ViceRecord.h */,
 				A5D355251AC34A62006C416D /* ViceRecord.m */,
 				748534461AC1E65400F5E457 /* Supporting Files */,
